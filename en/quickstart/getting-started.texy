@@ -12,15 +12,15 @@ Please install [full-featured IDE and all necessary plugins |/editors-and-tools]
 
 This QuickStart was written for Nette Framework 3.0 and PHP 7.1 or newer. The very first thing you should do is check if your server satisfies the [requirements|/requirements] of the Nette Framework. It should most likely be fine, but just to be sure we won't start with a broken environment.
 
-You can download the Nette Framework manually, but the recommended way of starting a new project is using [Composer |/composer]. If you don't know the Composer, you should definitely start with that. It's a really simple and useful tool, check out [their documentation |https://getcomposer.org/doc/].
+You can download the Nette Framework manually, but the recommended way of starting a new project is using [Composer |/composer]. If you don't know how to use Composer, you should definitely start with the Composer basic usage. It's a really simple and useful tool, check out [their documentation |https://getcomposer.org/doc/].
 
-With Composer, you can download and install the application skeleton known as Web Project including Nette Framework very easily. To do so, find your webroot directory (e.g. `/var/www` or `C:\InetPub`) in your command line and execute the following command:
+With Composer, you can download and install the application skeleton, known as Web Project, including Nette Framework very easily. To do so, find your webroot directory (e.g. `/var/www` or `C:\InetPub`) in your command line and execute the following command:
 
 ```shell
 composer create-project nette/web-project nette-blog
 ```
 
-Web Project will be downloaded into `nette-blog` directory.
+Web Project will be downloaded into the `nette-blog` directory.
 
 .[note]
 If you couldn't use Composer, [download |https://github.com/nette/web-project/archive/preloaded.zip] and extract the archive and copy it to the root directory of the webserver and rename to `nette-blog`. The entire framework is located in the `vendor` folder.
@@ -66,7 +66,7 @@ Web Project has the following structure:
     └── <b>index.php</b>     ← initial file that launches the application
 \--
 
-Directory `www` is supposed to store images, JavaScript, CSS, and other publicly available files. This is the only directory directly accessible from the browser, so you can point the root directory of your web server here (you can configure it in Apache, but let’s do it later as it’s not important right now).
+The directory `www` is supposed to store images, JavaScript, CSS, and other publicly available files. This is the only directory directly accessible from the browser, so you can point the root directory of your web server here (you can configure it in Apache, but let’s do it later as it’s not important right now).
 
 The most important directory for you is `app/`. You can find `Bootstrap.php` file there, inside which is a class that loads the framework and configures the application. It activates [autoloading |/robotloader] and sets up the [debugger |tracy:] and [routes |/routing].
 
@@ -75,7 +75,7 @@ The most important directory for you is `app/`. You can find `Bootstrap.php` fil
 Cleanup
 =======
 
-The Web Project contains a welcome page, which we can remove - feel free to delete the `app/Presenters/templates/Homepage/default.latte` file and replace it with the text "Hello world!".
+The Web Project contains a welcome page, which can be removed - feel free to delete the `app/Presenters/templates/Homepage/default.latte` file and replace it with the text "Hello world!".
 
 
 [* qs-hello.png *]
@@ -92,7 +92,7 @@ Tracy will significantly help you while hunting down errors. Also note the float
 
 [* qs-tracybar.png *]
 
-In the production mode, Tracy is, of course, disabled and does not reveal any sensitive information. All errors are saved into `log/` directory instead. Just try it out. In `app/Bootstrap.php`, find the following piece of code, uncomment the line and change the method call parameter to `false`, so it looks like this:
+In production mode, Tracy is, of course, disabled and does not reveal any sensitive information. All errors are saved into the `log/` directory instead. Just try it out. In `app/Bootstrap.php`, find the following piece of code, uncomment the line and change the method call parameter to `false`, so it looks like this:
 
 ```php .{data-file:app/Bootstrap.php}
 $configurator->setDebugMode(false);
@@ -105,6 +105,6 @@ After refreshing the web page, the red-screen page will be replaced with the use
 
 Now, look into the `log/` directory. You can find the error log there (in exception.log file) and also the page with the error message (saved in an HTML file with a name starting with `exception`).
 
-Comment line `// $configurator->setDebugMode(false);` again. Tracy automatically enables development mode on `localhost` environment and disables it elsewhere.
+Comment the line `// $configurator->setDebugMode(false);` again. Tracy automatically enables development mode on `localhost` environment and disables it elsewhere.
 
 Now, we can fix the bug and continue designing our application.
