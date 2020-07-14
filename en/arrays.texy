@@ -72,7 +72,7 @@ $value = Arrays::get($array, ['color', 'favorite']);
 getRef(array &$array, string|int|array $key): mixed .[method]
 -------------------------------------------------------------
 
-Gets reference to given `$array[$key]`. If the index does not exist, new one is created with value `null`.
+Gets reference to given `$array[$key]`. If the index does not exist, a new index is created with value `null`.
 
 ```php
 $valueRef = & Arrays::getRef($array, 'foo');
@@ -151,7 +151,7 @@ $res = Arrays::map($array, function ($value): string { return $value . $value; }
 mergeTree(array $array1, array $array2): array .[method]
 --------------------------------------------------------
 
-It recursively merges two fields. It is useful, for example, for merging tree structures. It behaves as the&nbsp;`+` operator for array, ie. it adds a key/value pair from the second array to the first one and retains the value from the first array in the case of a key collision.
+Recursively merge two fields. This is useful, for example, for merging tree structures. It behaves as the&nbsp;`+` operator for array, ie. it adds a key/value pair from the second array to the first array, and retains the value from the first array in the case of a key collision.
 
 ```php
 $array1 = ['color' => ['favorite' => 'red'], 5];
@@ -183,7 +183,7 @@ $array = Arrays::normalize([1 => 'first', 'a' => 'second'], 'foobar');
 pick(array &$arr, string|int $key, mixed $default=null): mixed .[method]
 ------------------------------------------------------------------------
 
-Returns and removes the value of an item from an array. If it does not exist, it throws an exception, or returns `$default`, if provided.
+Returns and removes the value of an item from an array. If the value does not exist, an exception is thrown, or returns `$default`, if provided.
 
 ```php
 $array = [1 => 'foo', null => 'bar'];
@@ -280,7 +280,7 @@ echo $hash->inner->a; // 'b'
 echo $hash['inner']['a']; // 'b'
 ```
 
-The transformation is recursive, which can be avoided by the second parameter:
+The transformation is recursive, which can be avoided by setting the second parameter to false:
 
 ```php
 $hash = Nette\Utils\ArrayHash::from($array, false);
