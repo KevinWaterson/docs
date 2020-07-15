@@ -25,13 +25,13 @@ while ($counter--) {
 }
 ```
 
-It may seem that the `echo 'Strings are different!'` command can't ever get executed. The opposite is true. Try to run this script in two browsers tabs simultaneously. The error occurs almost immediately.
+It may seem that the `echo 'Strings are different!'` command can never be executed. The opposite is true. Try to run this script in two browsers tabs simultaneously. The error occurs almost immediately.
 
 One tab reads the file at the moment when the other has not yet finished writing it.
 
-Therefore, the code is not safe when performed multiple at the same time (ie, in multiple threads). And that is nothing unusual on the Internet, where several people often connect to one website at the same time. Therefore, it's very important to ensure that your application can handle multiple threads at once - that it's *thread-safe* because native PHP functions are not. Otherwise, you can expect data loss and strange errors occurring.
+Therefore, the code is not safe when performed multiple times simultaneously.(ie, in multiple threads). And that is nothing unusual on the Internet, where several people often connect to one website at the same time. Therefore, it's very important to ensure that your application can handle multiple threads at once - that it's *thread-safe* because native PHP functions are not. Otherwise, you can expect data loss and strange errors occurring.
 
-The SafeStream offers solution: its secure protocol, through which we can atomically manipulate files through standard PHP functions. You just need prefix the filename with `nette.safe://`.
+The SafeStream offers a solution: its secure protocol, through which we can atomically manipulate files through standard PHP functions. You just need to prefix the filename with `nette.safe://`.
 
 ```php
 file_put_contents('nette.safe://file', $s);
@@ -55,7 +55,7 @@ SafeStream guarantees:
 - **Atomicity**: The file is written either as a whole or not written at all.
 - **Isolation**: No one can start to read a file that is not yet fully written.
 
-To ensure both it uses file locks and temporary files.
+To ensure both atomicity and isoloation, file locks and temporary files are used.
 
 Writing is done to temporary files and they are renamed only after successful writing. If the write fails for any reason, such as a script error or insufficient disk space, it will be discarded and an incomplete file will not be created.
 
